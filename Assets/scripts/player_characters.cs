@@ -5,20 +5,26 @@ using UnityEngine;
 public class player_characters : MonoBehaviour
 {
     public GameObject character;
-    public int maxCharacters = 10;  
-
-    private List<GameObject> soldiers = new List<GameObject>();
+    public int maxCharacters = 10;
+    public List<GameObject> soldiers = new List<GameObject>();
+    private int amount = 10;
 
     public void Add()
     {
         if(soldiers.Count < maxCharacters)
         {
             Debug.Log("max amount of soldiers has been reached");
+            return;
         }
 
         GameObject newSoldier = Instantiate(character);
-
-        soldiers.Add(newSoldier);
+        soldiers.Add(character);
+        amount--;
+        
+        if(amount <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
     // Start is called before the first frame update
     void Start()
