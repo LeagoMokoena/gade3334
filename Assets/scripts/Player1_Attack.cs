@@ -35,7 +35,8 @@ public class Player1_Attack : MonoBehaviour
         if (closestEnemy != null && closestDistance <= attackRange) // if there is a close enough enemy to attack
         {
             // do attack logic here, such as subtracting health from the enemy
-           
+            closestEnemy.GetComponent<cherteds>().HP += closestEnemy.GetComponent<cherteds>().defense; 
+            closestEnemy.GetComponent<cherteds>().HP -= this.GetComponent<cherteds>().attack;
         }
     }
 }

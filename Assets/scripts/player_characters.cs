@@ -35,6 +35,6 @@ public class player_characters : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DontDestroyOnLoad(this.gameObject);
     }
 }
