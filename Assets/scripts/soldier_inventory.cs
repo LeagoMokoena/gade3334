@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -16,7 +17,7 @@ public class soldier_inventory : MonoBehaviour
     public delegate void CharactersAdded(GameObject player);
     public int i = 0;
     public GameObject character1, chararcter2;
-    
+    public GameObject stacke,stake2;
     private void Start()
     {
         activePlayer = player1; // Player 1 starts first
@@ -70,7 +71,9 @@ public class soldier_inventory : MonoBehaviour
             // If there are no more characters left in the allCharacters list, trigger the CharactersAdded event
             if (i >= 5)
             {
-                // Switch to the other player's turn
+            // Switch to the other player's turn
+                stacke.GetComponent<stack>().player = activePlayer;
+                stacke.GetComponent<stack>().PlaceCharacterOnMap();
                 activePlayer = player2;
                 chararcter2.SetActive(true);
                 character1.SetActive(false);
@@ -79,6 +82,8 @@ public class soldier_inventory : MonoBehaviour
             }
         if(activePlayer == player2 && i < 0) 
         {
+            stake2.GetComponent<stack>().player = activePlayer;
+            stake2.GetComponent<stack>().PlaceCharacterOnMap();
             start.SetActive(true);
         }
     }
