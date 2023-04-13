@@ -16,12 +16,13 @@ public class soldier_inventory : MonoBehaviour
     public delegate void CharactersAdded(GameObject player);
     public int i = 0;
     public GameObject character1, chararcter2;
-    
+    public GameObject character3;
+    private Battle_Manager battle_manager;
     private void Start()
     {
         activePlayer = player1; // Player 1 starts first
-
     }
+
 
     private void Update()
     {
@@ -50,6 +51,7 @@ public class soldier_inventory : MonoBehaviour
             // Perform other game logic here for when players are no longer adding characters
             // For example, you could start a battle or move characters on the game board
         }*/
+
     }
 
     public void addplayer()
@@ -59,6 +61,7 @@ public class soldier_inventory : MonoBehaviour
             GameObject nextCharacter = allCharacters[i];
             allCharacters.RemoveAt(i);
             activePlayer.GetComponent<player_characters>().soldiers.Add(nextCharacter);
+        character3.GetComponent<Battle_Manager>().gameObjects.Add(nextCharacter);
         if (activePlayer == player1)
         {
             i++;
@@ -70,18 +73,20 @@ public class soldier_inventory : MonoBehaviour
             // If there are no more characters left in the allCharacters list, trigger the CharactersAdded event
             if (i >= 5)
             {
-                // Switch to the other player's turn
-                activePlayer = player2;
+            // Switch to the other player's turn
+            activePlayer = player2;
                 chararcter2.SetActive(true);
                 character1.SetActive(false);
                 i = 4;
 
             }
         if(activePlayer == player2 && i < 0) 
-        {
+        { 
             start.SetActive(true);
         }
     }
+
+  
 }
 
 
