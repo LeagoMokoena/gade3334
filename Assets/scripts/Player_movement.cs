@@ -1,24 +1,32 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_movement : MonoBehaviour
 {
     private bool moving;
-    private Vector3 pos,pos1;
-    public float speed = 0.2f;    
+    public Vector3 pos,pos1;
+    public float speed = 0.2f;
+    public KeyCode code;
+    public Text but;
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W) && !moving)
-            StartCoroutine(movepl(Vector3.up));
+        but.text = code.ToString() + " hold to move";
 
-        if (Input.GetKey(KeyCode.A) && !moving)
-            StartCoroutine(movepl(Vector3.left));
+        if (Input.GetKey(code))
+        {
+            if (Input.GetKey(KeyCode.W) && !moving)
+                StartCoroutine(movepl(Vector3.up));
 
-        if (Input.GetKey(KeyCode.S) && !moving)
-            StartCoroutine(movepl(Vector3.down));
+            if (Input.GetKey(KeyCode.A) && !moving)
+                StartCoroutine(movepl(Vector3.left));
 
-        if (Input.GetKey(KeyCode.D) && !moving)
-            StartCoroutine(movepl(Vector3.right));
+            if (Input.GetKey(KeyCode.S) && !moving)
+                StartCoroutine(movepl(Vector3.down));
+
+            if (Input.GetKey(KeyCode.D) && !moving)
+                StartCoroutine(movepl(Vector3.right));
+        }
 
     }
 
@@ -40,5 +48,7 @@ public class Player_movement : MonoBehaviour
 
         transform.position = pos1;
         moving = false; 
+
+        
     }
 }

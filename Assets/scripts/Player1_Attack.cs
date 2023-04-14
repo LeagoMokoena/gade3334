@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player1_Attack : MonoBehaviour
 {
@@ -11,33 +12,27 @@ public class Player1_Attack : MonoBehaviour
     public float attackInterval; // the time interval between attacks
     private float nextAttackTime; // the time of the next allowed attack
     private List<GameObject> enemyList; // a list of the second player's GameObjects
-
+    public int HPNUM,attacknum,defencenum;
+    public Text HP,attack,defence;
+    public Vector2 pos = new Vector2();
+    public GameObject player1, player2;
     void Start()
     {
-        enemyList = attacker.GetComponent<player_characters>().soldiers;
-        // find all GameObjects with the enemyTag and add them to the enemyList
+        HP.text = HP.text + HPNUM;
+        attack.text = attack.text + attacknum.ToString();
+        defence.text = defence.text + defencenum.ToString();
+        player1 = GameObject.FindWithTag("Player1");
+        player2 = GameObject.FindWithTag("Player2");
     }
 
     void Update()
     {
-        GameObject closestEnemy = null;
-        float closestDistance = Mathf.Infinity;
-        foreach (GameObject enemy in enemyList) // loop through all enemies in the list
+        if(Input.GetKeyUp(KeyCode.Space))
         {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distance < closestDistance) // if the enemy is closer than the current closest enemy
-            {
-                closestEnemy = enemy;
-                closestDistance = distance;
-            }
-        }
 
-        if (closestEnemy != null && closestDistance <= attackRange) // if there is a close enough enemy to attack
-        {
-            // do attack logic here, such as subtracting health from the enemy
-            closestEnemy.GetComponent<cherteds>().HP += closestEnemy.GetComponent<cherteds>().defense; 
-            closestEnemy.GetComponent<cherteds>().HP -= this.GetComponent<cherteds>().attack;
+
         }
+  
     }
 }
 
