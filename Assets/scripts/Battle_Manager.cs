@@ -53,6 +53,7 @@ public class Battle_Manager : MonoBehaviour
         time -= Time.deltaTime;
         timer.text = time.ToString();
         
+        foreach
 
         if (time <= 0)
         {
