@@ -663,11 +663,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba47347e0fd2df54e95f022631a84f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos: {x: 0, y: 0, z: 0}
-  pos1: {x: 0, y: 0, z: 0}
+  moving: 0
+  allow: 0
   speed: 0.002
   code: 54
   but: {fileID: 4563656892853284154}
+  point: {fileID: 0}
+  dis: 350
 --- !u!114 &8560487665895785128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,6 +693,8 @@ MonoBehaviour:
   attack: {fileID: 1805363061311820240}
   defence: {fileID: 8057154183326133504}
   pos: {x: 400, y: 30}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!1 &1000012730742446
 GameObject:
   m_ObjectHideFlags: 0

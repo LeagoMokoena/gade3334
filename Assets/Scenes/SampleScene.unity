@@ -219,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &260481088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010755293042, guid: a1b47a6da2826db44b549ff5bb009d79, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011028196368, guid: a1b47a6da2826db44b549ff5bb009d79, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -631,6 +635,10 @@ PrefabInstance:
       propertyPath: map
       value: 
       objectReference: {fileID: 1604424645}
+    - target: {fileID: 4141145949476045859, guid: a1b47a6da2826db44b549ff5bb009d79, type: 3}
+      propertyPath: allow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4141145949476045859, guid: a1b47a6da2826db44b549ff5bb009d79, type: 3}
       propertyPath: point
       value: 
@@ -26486,7 +26494,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2006622513448786777, guid: bb75405813cc29f41ada1a35072bd359, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2006622513448786777, guid: bb75405813cc29f41ada1a35072bd359, type: 3}
+      propertyPath: m_TagString
+      value: manager
       objectReference: {fileID: 0}
     - target: {fileID: 2006622513448786778, guid: bb75405813cc29f41ada1a35072bd359, type: 3}
       propertyPath: vas
