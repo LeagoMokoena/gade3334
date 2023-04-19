@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
-  allow: 0
+  allow: 1
   speed: 0.002
   code: 51
   but: {fileID: 1826848389296505850}

@@ -38,16 +38,13 @@ public class Battle_Manager : MonoBehaviour
 
         Acplayer = player1;
 
-        foreach (GameObject bos in Acplayer.GetComponent<player_characters>().soldiers)
-        {
-            bos.GetComponent<Player_movement>().allow = true;
-        }
 
         for (int i =0; i< 5; i++)
         {
             player1.GetComponent<player_characters>().soldiers[i].GetComponent<Player_movement>().code = codes[i];
-            Instantiate(player1.GetComponent<player_characters>().soldiers[i], spawn[i], Quaternion.identity, player1.transform);
+            player1.GetComponent<player_characters>().soldiers[i] = Instantiate(player1.GetComponent<player_characters>().soldiers[i], spawn[i], Quaternion.identity, player1.transform);
             player1.GetComponent<player_characters>().soldiers[i].GetComponent<Player_movement>().point = player1.GetComponent<player_characters>().soldiers[i].transform;
+            //player1.GetComponent<Player1_Attack>().opposers[i] = player2.GetComponent<player_characters>().soldiers[i];
             //player1.GetComponent<player_characters>().soldiers[i].GetComponent<Player_movement>().point = Instantiate(player1.GetComponent<player_characters>().soldiers[i], spawn[i],Quaternion.identity, player1.transform).transform;
             //player1.GetComponent<player_characters>().soldiers[i].GetComponent<Player_movement>().point = player1.GetComponent<player_characters>().soldiers[i].transform;
             //player1.GetComponent<player_characters>().soldiers[i].GetComponent<Player_movement>().code =  codes[i];
@@ -58,48 +55,56 @@ public class Battle_Manager : MonoBehaviour
         {
             player2.GetComponent<player_characters>().soldiers[j].GetComponent<Player_movement>().code = codes[j];
             //player2.GetComponent<player_characters>().soldiers[j].GetComponent<Player_movement>().point = player2.GetComponent<player_characters>().soldiers[j].transform;
-            Instantiate(player2.GetComponent<player_characters>().soldiers[j], spawn[k], Quaternion.identity, player2.transform);
+            player2.GetComponent<player_characters>().soldiers[j] = Instantiate(player2.GetComponent<player_characters>().soldiers[j], spawn[k], Quaternion.identity, player2.transform);
             player2.GetComponent<player_characters>().soldiers[j].GetComponent<Player_movement>().point = player2.GetComponent<player_characters>().soldiers[j].transform;
+            //player2.GetComponent<Player1_Attack>().opposers[j] = player1.GetComponent<player_characters>().soldiers[j];
             //player2.GetComponent<player_characters>().soldiers[j].GetComponent<Player_movement>().point = player2.GetComponent<player_characters>().soldiers[j].transform;
             //player2.GetComponent<player_characters>().soldiers[j].GetComponent<Player_movement>().code = codes[j];
             k++;
         }
 
+
+        foreach (GameObject bos in Acplayer.GetComponent<player_characters>().soldiers)
+        {
+            bos.GetComponent<Player_movement>().allow = true;
+        }
+
+        foreach (GameObject bos in player2.GetComponent<player_characters>().soldiers)
+        {
+            bos.GetComponent<Player_movement>().allow = false;
+        }
+
         player2txt.SetActive(false);
 
+        foreach (GameObject obj in Acplayer.GetComponent<player_characters>().soldiers)
+        {
+            obj.GetComponent<Player_movement>().others.Add(player2.GetComponent<player_characters>().soldiers[0]);
+            obj.GetComponent<Player_movement>().others.Add(player2.GetComponent<player_characters>().soldiers[1]);
+            obj.GetComponent<Player_movement>().others.Add(player2.GetComponent<player_characters>().soldiers[2]);
+            obj.GetComponent<Player_movement>().others.Add(player2.GetComponent<player_characters>().soldiers[3]);
+            obj.GetComponent<Player_movement>().others.Add(player2.GetComponent<player_characters>().soldiers[4]);
+        }
+
+        foreach (GameObject obj in player2.GetComponent<player_characters>().soldiers)
+        {
+            obj.GetComponent<Player_movement>().others.Add(Acplayer.GetComponent<player_characters>().soldiers[0]);
+            obj.GetComponent<Player_movement>().others.Add(Acplayer.GetComponent<player_characters>().soldiers[1]);
+            obj.GetComponent<Player_movement>().others.Add(Acplayer.GetComponent<player_characters>().soldiers[2]);
+            obj.GetComponent<Player_movement>().others.Add(Acplayer.GetComponent<player_characters>().soldiers[3]);
+            obj.GetComponent<Player_movement>().others.Add(Acplayer.GetComponent<player_characters>().soldiers[4]);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        /*foreach(GameObject obj in Acplayer.GetComponent<player_characters>().soldiers)
-        {
-            if (obj.GetComponent<Player_movement>().moving == true)
-            {
-                obj.GetComponentInParent<Player_movement>().allow = false;
-                nextRound = true;
-            }
-        }*/
 
-        /*for(int j = 0; j< 5; j++)
-        {
-            if (Acplayer.GetComponent<player_characters>().soldiers[j].GetComponent<Player_movement>().moving == true)
-            {
-                nextRound = true;
-            }
-        }*/
-
-
-        if(nextRound == true)
+        if (nextRound == true)
         {
             if(Acplayer == player1)
             {
                 Acplayer = player2;
-                /*foreach(GameObject ob in Acplayer.GetComponent<player_characters>().soldiers)
-                {
-                    ob.GetComponent<Player_movement>().allow = true;
-                }*/
+
                 for(int j = 0; j< 5; j++)
                 {
                     Acplayer.GetComponent<player_characters>().soldiers[j].GetComponent<Player_movement>().allow = true;
@@ -135,28 +140,5 @@ public class Battle_Manager : MonoBehaviour
             nextRound = false;
         }
 
-
-        /*if (time <= 0)
-        {
-            
-            time = 5;
-            if(Acplayer == player1)
-            {
-                Acplayer.SetActive(false);
-                Acplayer = player2;
-                player2txt.SetActive(true);
-                player1txt.SetActive(false);
-                Acplayer.SetActive(true);
-            }
-            else
-            {
-                Acplayer.SetActive(false);
-                Acplayer = player1;
-                player1txt.SetActive(true);
-                player2txt.SetActive(false);
-                Acplayer.SetActive(true);
-            }
-            
-        }*/
     }
 }

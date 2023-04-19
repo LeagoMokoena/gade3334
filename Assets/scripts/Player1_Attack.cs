@@ -5,33 +5,40 @@ using UnityEngine.UI;
 
 public class Player1_Attack : MonoBehaviour
 {
-
-    public string enemyTag; // the tag of the second player's GameObjects
-    public float attackRange; // the range at which the GameObject can attack
-    public GameObject attacker;
-    public float attackInterval; // the time interval between attacks
-    private float nextAttackTime; // the time of the next allowed attack
-    private List<GameObject> enemyList; // a list of the second player's GameObjects
+    public List<GameObject> opposers; 
     public int HPNUM,attacknum,defencenum;
     public Text HP,attack,defence;
-    public Vector2 pos = new Vector2();
-    public GameObject player1, player2;
+    public GameObject attacker;
+
     void Start()
     {
         HP.text = HP.text + HPNUM;
         attack.text = attack.text + attacknum.ToString();
         defence.text = defence.text + defencenum.ToString();
-        player1 = GameObject.FindWithTag("Player1");
-        player2 = GameObject.FindWithTag("Player2");
+        opposers = new List<GameObject>();
     }
 
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Space))
+        /*if(Input.GetKeyUp(KeyCode.Space))
         {
-
+            for (int i = 0; i < opposers.Count; i++)
+            {
+                if (Vector3.Distance(transform.position, opposers[0].transform.position) < 5)
+                {
+                    opposers[i].GetComponent<Player1_Attack>().HPNUM -= this.attacknum;
+                }
+            }
 
         }
+
+        foreach(GameObject o in opposers)
+        {
+            if(o.GetComponent<Player1_Attack>().HPNUM <= 0)
+            {
+                Destroy(o);
+            }    
+        }*/
   
     }
 }
